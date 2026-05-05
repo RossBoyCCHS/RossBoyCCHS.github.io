@@ -1,0 +1,59 @@
+<script>
+
+function test_for_amicability() {
+  let divisors_A = [1];
+  let divisors_B = [1];
+  var list_divisors = '';
+  var list_sums = '';
+  var numberA = document.getElementById('numberA').value;
+  var numberB = document.getElementById('numberB').value;
+
+
+  // List the proper divisors for number A:
+  for(var i=1; i<numberA; i++) {
+    if (numberA % i == 0) {
+      divisors_A.push(i);
+    }
+  }
+  // List the proper divisors for number B:
+  for(var j=1; j<numberB; j++) {
+    if (numberB % j == 0) {
+      divisors_B.push(j);
+    }
+  }
+
+  list_divisors = list_divisors + '<br>Divisors for Number A:<br>';
+  var sum_of_divisors_for_numberA = 0;
+  for(var n=1; n<divisors_A.length; n++) {
+    list_divisors = list_divisors + divisors_A[n] + '<br>';
+    sum_of_divisors_for_numberA += divisors_A[n];
+  }
+  list_divisors = list_divisors + 'Sum of divisors for Number A: ' +
+  sum_of_divisors_for_numberA + '<br>';
+
+  list_divisors = list_divisors + '<br>Divisors for Number B:<br>';
+  var sum_of_divisors_for_numberB = 0;
+  for(var n=1; n<divisors_B.length; n++) {
+    list_divisors = list_divisors + divisors_B[n] + '<br>';
+    sum_of_divisors_for_numberB += divisors_B[n];
+  }
+  list_divisors = list_divisors + 'Sum of divisors for Number B: ' +
+  sum_of_divisors_for_numberB;
+
+  if(numberB == sum_of_divisors_for_numberA && numberA == sum_of_divisors_for_numberB) {
+    list_divisors = list_divisors + '<br><br>The numbers are amicable!';
+  } else if (numberB != sum_of_divisors_for_numberA || numberA != sum_of_divisors_for_numberB) {
+    list_divisors = list_divisors + '<br><br>The numbers are not amicable.';
+  }
+
+  document.getElementById('test_result').innerHTML = list_divisors;
+}
+
+</script>
+
+<input type='text' id='numberA' placeholder='Number A' size='12' />
+&nbsp;&nbsp;
+<input type='text' id='numberB' placeholder='Number B' size='12' />
+<br><br>
+<button onclick='test_for_amicability()'>Test for amicability</button>
+<div id='test_result'></div>
